@@ -1,0 +1,67 @@
+/* CSS files add styling rules to your content */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+body {
+  font-family: "lucida console", monospace;
+  margin: 2em;
+  overflow: auto;
+  color: #14c814;
+  background-color:black;
+}
+
+h1 {
+  font-style: italic;
+  color: #373fff;
+}
+
+#console {
+  visibility: hidden;
+}
+#console-printout {
+ list-style-type: none;
+  padding-left:0px;
+  margin:0px;
+  pointer-events:none;
+}
+
+#console-input {
+  border: 0px;
+  width: 90%;
+  font: inherit;
+  margin:0px;
+  padding:0px;
+  background-color:inherit;
+  caret-color:green;
+  color:inherit;
+}
+
+.noselect { /*Thanks stackoverflow */
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
+#myVideo {
+  position: fixed;
+  left:20px;;
+  top:0;
+  margin-top: 20px;
+  max-width: 50%;
+  min-height: 10%;
+}
+#promoVideo {
+  position: fixed;
+  left:20px;;
+  top:0;
+  margin-top: 20px;
+  max-width: 50%;
+  min-height: 10%;
+  visibility:hidden;
+}
+#help-table td {
+  padding-right:1em;
+  padding-bottom:1em;
+}

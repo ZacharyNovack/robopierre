@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CERVANTES v1.1 - RollCake</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      
+    var prompt_string = "&gt&gt&gt";
+    // var inputArray = {
+    //    i : -1,
+    //   list : []
+    // }
+    $(document).ready(function(){
+      $("#console-printout").append("<li><strong>CERVANTES</strong> version 1.1</li><li>Developed by BIRCAN (not to be confused with IRCAM)</li><li>Type <b>help</b> for assistance and <b>shut_up</b> to stop audio. <b>++</b> and <b>--</b> respectively to raise/lower volume.</li>")
+      $("#console-input").focus();
+      $("html").click(() => { //CLICKING OUT IS NOT ALLOWED! I WILL NOT PERMIT IT
+        $("#console-input").focus();
+        //var audio = document.getElementById("robot-sound");
+        //audio.setAttribute("src", "https://cdn.glitch.com/32d49bb5-00eb-4105-853e-80c89fd9f764%2Fnoclick.mp3?v=1587184766204");
+        //audio.play();
+      })
+      $("#console-form").submit(function(event){
+        event.preventDefault();
+        var input = $("#console-form").serializeArray();
+        var text_input = input[0].value;
+        $("#console-printout").append("<li>" + prompt_string + text_input + "</li>");
+        $("#console-input").val('');
+        var printout = "";
+        printout = do_console_command(text_input);
+        // if (text_input.trim() != "") {
+        //   inputArray.list = inputArray.list.slice(0, inputArray.i == inputArray.list.length - 1 ? inputArray.i+ 1 : inputArray.i);
+        //   inputArray.list.push(text_input);
+        //   inputArray.i = inputArray.length - 1; //could have just done inputArray.i = inputArray.list.push(text_input) - 1;
+        // }
+        // document.onkeyup = function(e) {
+        //   if (e.ctrlKey && e.which == 38) {
+        //     console.log('uppp');
+        //     alert('ehy!');
+        //   }
+        // }
+        // "" is falsey
+        if (printout) {
+          $("#console-printout").append("<li>" + prompt_string + printout + "</li>");
+        }
+      });
+});
+    </script>
+  </head>  
+  <body>
+    <div id="console">
+      <div id="console-print">
+        <ul id="console-printout">
+        </ul>
+      </div>
+      <form id="console-form" name="console-form">
+        &gt&gt&gt<input id="console-input" name="console-input" type="text"  />
+      </form>
+    </div>
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+    <audio id="robot-sound"></audio>
+    
+<!--      Video off bc waiting is getting really annoying    -->
+    <video autoplay muted id="myVideo" name="myVideo">
+      <source src="https://cdn.glitch.com/32d49bb5-00eb-4105-853e-80c89fd9f764%2F2020-04-30%2002-35-28.mp4?v=1588228660487" type="video/mp4">
+    </video>
+    <video id="promoVideo" name="promoVideo">
+      <source src="https://cdn.glitch.com/32d49bb5-00eb-4105-853e-80c89fd9f764%2FPromo2Final.mp4?v=1588845102796" type="video/mp4">
+    </video>
+    <script>
+    var vid = document.getElementById("myVideo");
+      vid.onended = function(){
+        //$(vid).css("z-index", "-10");
+        $(vid).remove();
+        $("#console").css("visibility", "visible"); // So there's no flash of the console on load
+      }
+    var promoVid = document.getElementById("promoVideo");
+      promoVid.onended = function(){
+        $(vid).attr("visibility", "hidden");
+        $("#console").css("visibility", "visible");
+      }
+      document.getElementById("robot-sound").volume = 0.5;
+    </script>
+  </body>
+</html>
