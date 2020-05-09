@@ -14,13 +14,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
       
+      //Bake a cookie
+      
     var prompt_string = "&gt&gt&gt";
     // var inputArray = {
     //    i : -1,
     //   list : []
     // }
     $(document).ready(function(){
-      $("#console-printout").append("<li><strong>CERVANTES</strong> version 1.1</li><li>Developed by BIRCAN (not to be confused with IRCAM)</li><li>Type <b>help</b> for assistance and <b>shut_up</b> to stop audio. <b>++</b> and <b>--</b> respectively to raise/lower volume.</li>")
+      $("#console-printout").append("<li><strong>CERVANTES</strong> version 1.1</li><li>Developed by BIRCAN (not to be confused with IRCAM)</li><li>Type <b>help</b> for assistance and <b>shut_up</b> to stop audio. <b>++</b> and <b>--</b> respectively to raise/lower volume.</li><li>Or just type <b>get_current_events</b> to get started immediately.</li>")
       $("#console-input").focus();
       $("html").click(() => { //CLICKING OUT IS NOT ALLOWED! I WILL NOT PERMIT IT
         $("#console-input").focus();
@@ -72,7 +74,7 @@
     <audio id="robot-sound"></audio>
     
 <!--      Video off bc waiting is getting really annoying    -->
-    <video autoplay muted id="myVideo" name="myVideo">
+        <video muted id="myVideo" name="myVideo">
       <source src="https://cdn.glitch.com/32d49bb5-00eb-4105-853e-80c89fd9f764%2F2020-04-30%2002-35-28.mp4?v=1588228660487" type="video/mp4">
     </video>
     <video id="promoVideo" name="promoVideo">
@@ -80,17 +82,23 @@
     </video>
     <script>
     var vid = document.getElementById("myVideo");
+      if(document.cookie.indexOf("visited") < 0) {
+      vid.play();
+        document.cookie = "visited; SameSite=Strict; Max-Age=3600; Secure;";
+        console.log("COOKIES:"+document.cookie)
       vid.onended = function(){
-        //$(vid).css("z-index", "-10");
-        $(vid).remove();
+        //$(vid).css("z-index", "-10")visited;
         $("#console").css("visibility", "visible"); // So there's no flash of the console on load
+      }} else {
+        vid.remove();
+        $("#console").css("visibility", "visible");
       }
     var promoVid = document.getElementById("promoVideo");
       promoVid.onended = function(){
         $(vid).attr("visibility", "hidden");
         $("#console").css("visibility", "visible");
       }
-      document.getElementById("robot-sound").volume = 0.5;
+      document.getElementById("robot-sound").volume = 0.7;
     </script>
   </body>
 </html>
